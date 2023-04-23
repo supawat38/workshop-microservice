@@ -4,7 +4,7 @@ import "time"
 
 // สำหรับ user
 type Members struct {
-	ID         uint      `gorm:"primaryKey;autoIncrement;unique" json:"id" validate:"required"`
+	MemberCode uint      `gorm:"primaryKey;autoIncrement;unique" json:"member_code" validate:"required"`
 	Username   string    `json:"username" `
 	Password   string    `json:"password" `
 	Name       string    `json:"name" `

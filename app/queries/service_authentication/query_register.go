@@ -21,7 +21,7 @@ func Register(Parameter struct_authentication.Members) (success bool) {
 	h.Write([]byte(Parameter.Password))
 	Password := hex.EncodeToString(h.Sum(nil))
 
-	//อัพเดทข้อมูลที่ตารางผู้ใช้
+	//เพิ่มข้อมูลที่ตารางสมาชิก
 	sqlStatement := ` INSERT INTO Members
 						( username , password , name , status , created_at ) `
 	sqlStatement += ` 	VALUES (
