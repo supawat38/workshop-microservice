@@ -32,6 +32,7 @@ func Login(c *fiber.Ctx) error {
 	//Check Member in DB
 	Result := queries_authentication.CheckMemberLogin(filter)
 	if Result.Username == "" {
+		//return HTTP 200 (เพราะเข้าถึงได้ แต่ไม่พบข้อมูล)
 		return c.JSON(fiber.Map{
 			"code": utils.ResponseCode()["api"]["data_not_found"],
 			"msg":  utils.ResponseMessage()["api"]["data_not_found"],
@@ -51,7 +52,7 @@ func Login(c *fiber.Ctx) error {
 	// var Token string
 	return c.JSON(fiber.Map{
 		"token": tokenCheck,
-		"code":  200,
+		"code":  utils.ResponseCode()["api"]["success"],
 		"msg":   utils.ResponseMessage()["api"]["success"],
 	})
 }
@@ -59,7 +60,7 @@ func Login(c *fiber.Ctx) error {
 // ออกจากระบบ
 func Logout(c *fiber.Ctx) error {
 	return c.JSON(fiber.Map{
-		"code": 200,
+		"code": utils.ResponseCode()["api"]["success"],
 		"msg":  utils.ResponseMessage()["api"]["success"],
 	})
 }

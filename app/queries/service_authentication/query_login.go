@@ -1,7 +1,7 @@
 package queries
 
 import (
-	models_authentication "app/app/models/service_authentication"
+	struct_authentication "app/app/models/service_authentication"
 	"app/platform/database"
 	"crypto/sha1"
 	"encoding/hex"
@@ -9,7 +9,7 @@ import (
 )
 
 // เข้าสู่ระบบ
-func CheckMemberLogin(Parameter models_authentication.Req_login) (Result models_authentication.Req_login) {
+func CheckMemberLogin(Parameter struct_authentication.Req_login) (Result struct_authentication.Req_login) {
 
 	//ถอดรหัส
 	h := sha1.New()

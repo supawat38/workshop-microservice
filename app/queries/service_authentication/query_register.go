@@ -6,11 +6,11 @@ import (
 	"encoding/hex"
 	"time"
 
-	models_authentication "app/app/models/service_authentication"
+	struct_authentication "app/app/models/service_authentication"
 )
 
 // สมัครสมาชิก
-func Register(Parameter models_authentication.Members) (success bool) {
+func Register(Parameter struct_authentication.Members) (success bool) {
 
 	//วันที่ปัจจุบัน
 	dTimeNow := time.Now().Local()

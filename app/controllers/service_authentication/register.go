@@ -5,7 +5,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 
-	models_authentication "app/app/models/service_authentication"
+	struct_authentication "app/app/models/service_authentication"
 	queries_authentication "app/app/queries/service_authentication"
 )
 
@@ -13,7 +13,7 @@ import (
 func Register(c *fiber.Ctx) error {
 
 	//รับค่า & เช็คประเภท
-	filter := models_authentication.Members{}
+	filter := struct_authentication.Members{}
 	if err := c.BodyParser(&filter); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"code":   utils.ResponseCode()["api"]["invalid_data_type"],
@@ -40,7 +40,7 @@ func Register(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(fiber.Map{
-		"code": 200,
+		"code": utils.ResponseCode()["api"]["success"],
 		"msg":  utils.ResponseMessage()["api"]["success"],
 	})
 }
