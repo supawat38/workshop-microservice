@@ -10,9 +10,9 @@ type ErrorResponse struct {
 var validate = validator.New()
 
 //Validate
-func ValidateStruct(user interface{}) []*ErrorResponse {
+func ValidateStruct(req interface{}) []*ErrorResponse {
 	var errors []*ErrorResponse
-	err := validate.Struct(user)
+	err := validate.Struct(req)
 	if err != nil {
 		for _, err := range err.(validator.ValidationErrors) {
 			var element ErrorResponse
