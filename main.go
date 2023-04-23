@@ -62,6 +62,6 @@ func main() {
 	// routes.PrivateRoutes(app)
 	routes.NotFoundRoute(app)
 
-	// Start server (with graceful shutdown).
+	// Start server
 	utils.StartServer(app)
 }
