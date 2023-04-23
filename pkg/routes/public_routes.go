@@ -10,18 +10,17 @@ import (
 )
 
 func PublicRoutes(a *fiber.App) {
-	route := a.Group("/api")
-
 	//รายการสินค้า
-	route.Get("/product", middleware.JWTProtected(), service_product.GetProduct)
-	route.Get("/product/:product_code", middleware.JWTProtected(), service_product.GetProductByID)
+	services_product := a.Group("/api")
+	services_product.Get("/product", middleware.JWTProtected(), service_product.GetProduct)
+	services_product.Get("/product/:product_code", middleware.JWTProtected(), service_product.GetProductByID)
 
 	//รายการใบสั้งซื้อ
-	route.Get("/detail_purchaseorder/:order_code", middleware.JWTProtected(), service_order.DetailPurchaseorder)
+	services_order := a.Group("/api")
+	services_order.Get("/detail_purchaseorder/:order_code", middleware.JWTProtected(), service_order.DetailPurchaseorder)
 
-	//รายละเอียดข้อมูลสมาชิก
-	route.Get("/detail_member/:member_code", middleware.JWTProtected(), service_member.DetailMebmer)
-
-	//รายละเอียดใบสั้งซื้อ ตามสมาชิก
-	route.Get("/detail_purchaseorder_bymember/:member_code", middleware.JWTProtected(), service_member.DetailPurchaseorderByMember)
+	//รายละเอียดข้อมูลสมาชิก && รายละเอียดใบสั้งซื้อ ตามสมาชิก
+	services_user := a.Group("/api")
+	services_user.Get("/detail_member/:member_code", middleware.JWTProtected(), service_member.DetailMebmer)
+	services_user.Get("/detail_purchaseorder_bymember/:member_code", middleware.JWTProtected(), service_member.DetailPurchaseorderByMember)
 }
