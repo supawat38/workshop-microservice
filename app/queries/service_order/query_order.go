@@ -61,6 +61,21 @@ func UpdateTotalPurchaseorder(OrderCode uint) (status bool) {
 	return
 }
 
+// ตรวจสอบก่อน
+func FindPurchaseorder(Parameter struct_order.ReqOrderCode) (Result struct_order.ReqOrderCode) {
+
+	var tQueryWhere = ""
+	tQueryWhere += ` order_code = @order_code AND member_code =  @member_code `
+
+	//อัพเดทข้อมูลที่ตารางผู้ใช้
+	query_result := `SELECT order_code FROM Orders WHERE `
+	query_result += tQueryWhere
+	database.DBConn.Raw(query_result, map[string]interface{}{
+		"order_code":  Parameter.OrderCode,
+		"member_code": Parameter.MemberCode}).Scan(&Result)
+	return Result
+}
+
 // ยกเลิกใบสั่งซื้อ
 func UpdateStatusPurchaseorder(Parameter struct_order.ReqOrderCode) (status bool) {
 	queryUpdate := `UPDATE Orders SET status = 'cancel' WHERE order_code = @order_code AND member_code = @member_code`

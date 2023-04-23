@@ -61,6 +61,16 @@ func CancelPurchaseorder(c *fiber.Ctx) error {
 		})
 	}
 
+	//เช็ตว่ามีในระบบไหม
+	Result := queries_order.FindPurchaseorder(filter)
+	if Result.OrderCode == 0 {
+		//return HTTP 200 (เพราะเข้าถึงได้ แต่ไม่พบข้อมูล)
+		return c.JSON(fiber.Map{
+			"code": utils.ResponseCode()["api"]["data_not_found"],
+			"msg":  utils.ResponseMessage()["api"]["data_not_found"],
+		})
+	}
+
 	//ยกเลิกใบสั้งซื้อ
 	status := queries_order.UpdateStatusPurchaseorder(filter)
 	if !status {
