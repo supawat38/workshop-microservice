@@ -34,7 +34,7 @@ type ReqOrderCode struct {
 type DetailOrder struct {
 	OrderCode     uint           `json:"order_code" `
 	MemberCode    uint           `json:"member_code"`
-	MemberName    uint           `json:"member_name"`
+	MemberName    string         `json:"member_name"`
 	Status        string         `json:"status" `
 	Total         float64        `json:"total" `
 	ProductDetail datatypes.JSON `json:"product_detail" gorm:"type:jsonb"`

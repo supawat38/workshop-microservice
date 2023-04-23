@@ -10,7 +10,7 @@ import (
 	"github.com/golang-jwt/jwt"
 )
 
-// สร้าง Token และเก็บไว้ใน MapClaims (หลังบ้าน)
+// สร้าง Token และเก็บไว้ใน
 func GenerateAccessTokenUser(user models_authentication.Req_login) (string, error) {
 	// Set secret key from .env file.
 	secret := os.Getenv("JWT_SECRET_KEY")
