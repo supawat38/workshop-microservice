@@ -20,6 +20,6 @@ func GetProduct(product_code string) (result []struct_product.Products) {
 
 	sqlStatement := ` SELECT * FROM Products `
 	sqlStatement += SqlWhere
-	database.DBConn.Debug().Raw(sqlStatement).Scan(&result)
+	database.DBConn.Raw(sqlStatement).Scan(&result)
 	return
 }

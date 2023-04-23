@@ -5,9 +5,9 @@ import (
 
 	service_order "app/app/controllers/service_order"
 	service_product "app/app/controllers/service_product"
+	service_member "app/app/controllers/service_user"
 )
 
-// PublicRoutes func for describe group of public routes.
 func PublicRoutes(a *fiber.App) {
 	route := a.Group("/api")
 
@@ -18,4 +18,9 @@ func PublicRoutes(a *fiber.App) {
 	//รายการใบสั้งซื้อ
 	route.Get("/detail_purchaseorder/:order_code", service_order.DetailPurchaseorder)
 
+	//รายละเอียดข้อมูลสมาชิก
+	route.Get("/detail_member/:member_code", service_member.DetailMebmer)
+
+	//รายละเอียดใบสั้งซื้อ ตามสมาชิก
+	route.Get("/detail_purchaseorder_bymember/:member_code", service_member.DetailPurchaseorderByMember)
 }

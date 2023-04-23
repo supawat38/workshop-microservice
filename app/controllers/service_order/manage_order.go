@@ -42,9 +42,8 @@ func CreatePurchaseorder(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(fiber.Map{
-		"codes": last_order_code,
-		"code":  utils.ResponseCode()["api"]["success"],
-		"msg":   utils.ResponseMessage()["api"]["success"],
+		"code": utils.ResponseCode()["api"]["success"],
+		"msg":  utils.ResponseMessage()["api"]["success"],
 	})
 }
 
